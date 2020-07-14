@@ -8,6 +8,8 @@ using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 using Microsoft.Extensions.DependencyInjection;
+using DungeonDrone.Modules;
+
 
 
 namespace DungeonDrone
@@ -16,7 +18,8 @@ namespace DungeonDrone
     {
         static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
         
-
+        
+        
         private DiscordSocketClient _client;
         private CommandService _commands;
         private IServiceProvider _services;
@@ -30,7 +33,7 @@ namespace DungeonDrone
                 .AddSingleton(_commands)
                 .BuildServiceProvider();
 
-            string token = "NzI4NTQ3NjQxNzg0MjcwOTA5.Xw2Ivg.i_JUXeZcyh5-NkSfImrS379mIwI";
+            string token = APIKeys.DiscordAPIKey;
 
             _client.Log += _client_Log;
 
@@ -68,5 +71,7 @@ namespace DungeonDrone
                 if (!result.IsSuccess) Console.WriteLine(result.ErrorReason);
             }
         }
+
+        
     }
 }
